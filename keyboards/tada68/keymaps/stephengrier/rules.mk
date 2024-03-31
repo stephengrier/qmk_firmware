@@ -16,6 +16,10 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight.  Do not enable this with audio at the same time.
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 
+# I've flashed the atmel-dfu bootloader on my Tada68. If you're still using the
+# stock LUFA mass storage bootloader then comment this out.
+BOOTLOADER = atmel-dfu
+
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
 endif
