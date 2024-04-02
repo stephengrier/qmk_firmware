@@ -13,3 +13,27 @@ The modifications from the default keymap are:
 With this keymap backlight breathing mode can be enabled/disabled with Fn+x.
 This is not supported at all in the default keymap.
 
+## Compiling and flashing
+
+Compile the firmware with:
+
+```bash
+qmk compile -kb tada68 -km stephengrier
+```
+
+This will create a hex file called `tada68_stephengrier.hex`. If you are using
+the stock mass storage bootloader you will need a bin file instead. In this case
+you should comment out the `BOOTLOADER` line from the `rules.mk` file before
+compiling.
+
+### Flashing
+
+This keymap expects the DFU bootloader. If you are using the stock mass storage
+bootloader that comes with the Tada68 then you will need to comment out the
+`BOOTLOADER` line from the `rules.mk` file and recompile (see above).
+
+```bash
+dfu-programmer atmega32u4 erase
+dfu-programmer atmega32u4 flash tada68_stephengrier.hex
+dfu-programmer atmega32u4 reset
+```
